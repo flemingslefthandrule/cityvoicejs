@@ -5,9 +5,16 @@ import axios from 'axios';
 
 const Signup = () => {
 
-    const apiurl = 'http://localhost:8000'
+    const apiurl = 'http://localhost:8000';
 
     const navigate = useNavigate();
+    const [refresh, setRefresh] = useState("");
+    useEffect(() => {
+        setRefresh(localStorage.getItem('refresh_token'));
+        if(refresh) {
+            navigate('/');
+        }
+    }, [refresh]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,6 +35,7 @@ const Signup = () => {
             localStorage.clear();
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
+            navigate("/");
         })
         .catch(function (error) {
             console.log(error);
@@ -40,8 +48,10 @@ const Signup = () => {
             <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
                 <input className='p-2 border-b-2 border-b-[#86C232] focus:outline-none' type="text" name="userName" placeholder='Enter username' />
                 <input className='p-2 border-b-2 border-b-[#86C232] focus:outline-none' type="number" name="mobileNum" placeholder='Enter Mobile Number' />
-                <label htmlFor="isExpert">Are you a govt official</label>
-                <input type="checkbox" name="isExpert" id="isExpert"/>
+                <dir className="flex gap-2">
+                    <label htmlFor="isExpert">Are you a govt official</label>
+                    <input type="checkbox" name="isExpert" id="isExpert"/>
+                </dir>
                 <input className='p-2 border-b-2 border-b-[#86C232] focus:outline-none' type="password" name="password" placeholder='Set password' />
                 <button className='rounded-md border border-transparent py-2 px-4 text-base font-semibold font-inherit bg-[#1a1a1a] cursor-pointer transition-border-color duration-250 overflow-hidden text-[#86C232] focus:outline-none focus-visible:ring-4 focus-visible:ring-auto focus-visible:ring-[#86C232] hover:border-[#86C232]'>Sign Up</button>
             </form>

@@ -1,15 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 const Login = () => {
 
     const navigate = useNavigate();
+    const apiurl = 'http://localhost:8000';
+    const [refresh, setRefresh] = useState("");
+    useEffect(() => {
+        setRefresh(localStorage.getItem('refresh_token'));
+        if(refresh) {
+            navigate('/');
+        }
+    }, [refresh]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userName = e.target[0].value;
         const password = e.target[1].value;
+        const userData = {
+            'username' : userName,
+            'password' : password
+        }
+        await axios.post(apiurl+'/user/login/', userData)
+        .then(function (response) {
+            console.log(response);
+            localStorage.clear();
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refresh_token', response.data.refresh);
+            navigate("/");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     return (
