@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ const Signup = () => {
 
     const navigate = useNavigate();
     const [refresh, setRefresh] = useState("");
+
     useEffect(() => {
         setRefresh(localStorage.getItem('refresh_token'));
         if(refresh) {
@@ -35,6 +36,7 @@ const Signup = () => {
             localStorage.clear();
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
+            localStorage.setItem('username', response.data.username);
             navigate("/");
         })
         .catch(function (error) {

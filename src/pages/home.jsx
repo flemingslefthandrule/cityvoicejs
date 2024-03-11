@@ -9,8 +9,7 @@ const Home = () => {
         window.location.reload();
     }
     return (
-        <div>
-            <h1>home</h1>
+        <div className='h-[100vh] w-[60vw]'>
             <button onClick={handleLogout}>Logout</button>
         </div>
     )
