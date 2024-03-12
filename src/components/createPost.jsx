@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import cat from '../axios'
 import ListOfUsers from './listOfUsers';
 
-const CreatePost = () => {
+const CreatePost = (props) => {
 
     const [searchName, setSearchName] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -78,11 +78,13 @@ const CreatePost = () => {
         // .catch((err) => {
         //     console.log(err.message);
         // });
+        props.setIsCreating(false);
     }
 
     return (
         <div className="flex flex-col p-2 space-y-2">
             <input
+                className="rounded-[100px] p-2"
                 type="text"
                 name="title"
                 placeholder="Title"
@@ -90,13 +92,14 @@ const CreatePost = () => {
                 onChange={handleInputChange}
             />
             <input
+                className="rounded-[100px] p-2"
                 type="text"
                 name="body"
                 placeholder="Body"
                 value={body}
                 onChange={handleInputChange}
             />
-            <select name="Labels" value={label} onChange={handleSelectChange}>
+            <select className="rounded-[100px] p-2" name="Labels" value={label} onChange={handleSelectChange}>
                 <option value="">Select Label</option>
                 {labels.map((option, index) => (
                     <option key={index} value={index}>
@@ -104,9 +107,9 @@ const CreatePost = () => {
                     </option>
                 ))}
             </select>
-            <input type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSeatch} />
+            <input className="rounded-[100px] p-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSeatch} />
             {searchResults && <ListOfUsers list={searchResults} setTag={setTag} setSearchResults={setSearchResults}/>}
-            <button onClick={handleSubmit}>Post</button>
+            <button className="rounded-[100px] p-2" onClick={handleSubmit}>Post</button>
         </div>
     )
 }
