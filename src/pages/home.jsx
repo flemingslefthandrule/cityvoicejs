@@ -1,16 +1,18 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import RightHome from '../components/rightHome';
+import MiddleHome from '../components/middleHome';
+import LeftHome from '../components/leftHome';
 
 const Home = () => {
-    const navigate = useNavigate();
 
-    const handleLogout = ()=> {
-        localStorage.clear();
-        window.location.reload();
-    }
+    const myUserName = localStorage.getItem("username");
+    
     return (
-        <div className='h-[100vh] w-[60vw]'>
-            <button onClick={handleLogout}>Logout</button>
+        <div className='h-[100vh] w-[100vw] flex'>
+            <LeftHome />
+            <MiddleHome />
+            <RightHome />
         </div>
     )
 }
