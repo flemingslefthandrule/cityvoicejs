@@ -1,4 +1,4 @@
-
+import Dummy from '../assets/Dummy.png'
 
 const ListOfUsers = (props) => {
 
@@ -15,7 +15,7 @@ const ListOfUsers = (props) => {
                 <div key={index} onClick={()=>{tagUser(user.name)}} className="flex gap-2 p-2 border-2 border-slate-700 m-2 text-slate-700 hover:bg-slate-700 hover:text-slate-300 cursor-pointer">
                     {user.name ?(
                     <>
-                        <img src={user.photo} alt="" className="w-[1.5em] rounded-[50%]"/>
+                        <img src={user.photo || Dummy} alt="" className="w-[1.5em] rounded-[50%]"/>
                         {user.name}
                     </> 
                     ):(
