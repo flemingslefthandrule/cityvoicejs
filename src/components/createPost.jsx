@@ -81,6 +81,10 @@ const CreatePost = (props) => {
         props.setIsCreating(false);
     }
 
+    const handleCancel = () => {
+        props.setIsCreating(false);
+    }
+    
     return (
         <div className="flex flex-col p-2 space-y-2">
             <input
@@ -109,7 +113,10 @@ const CreatePost = (props) => {
             </select>
             <input className="rounded-[100px] p-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSeatch} />
             {searchResults && <ListOfUsers list={searchResults} setTag={setTag} setSearchResults={setSearchResults}/>}
-            <button className="rounded-[100px] p-2" onClick={handleSubmit}>Post</button>
+            <div className='flex'>
+                <button className="rounded-[100px] p-2 grow" onClick={handleCancel}>Cancel</button>
+                <button className="rounded-[100px] p-2 grow" onClick={handleSubmit}>Post</button>
+            </div>
         </div>
     )
 }
