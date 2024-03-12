@@ -31,7 +31,7 @@ const CreatePost = (props) => {
         setSearchName(event.target.value);
     };
 
-    const handleSeatch = (e) => {
+    const handleSearch = (e) => {
         if(e.code=='Enter') {
             cat.get(apiurl+'/user/whois/'+searchName+'/')
             .then((resp) => {
@@ -111,7 +111,7 @@ const CreatePost = (props) => {
                     </option>
                 ))}
             </select>
-            <input className="rounded-[100px] p-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSeatch} />
+            <input className="rounded-[100px] p-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSearch} />
             {searchResults && <ListOfUsers list={searchResults} setTag={setTag} setSearchResults={setSearchResults}/>}
             <div className='flex'>
                 <button className="rounded-[100px] p-2 grow" onClick={handleCancel}>Cancel</button>

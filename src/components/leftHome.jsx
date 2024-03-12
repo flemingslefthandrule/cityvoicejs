@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import Dummy from '../assets/Dummy.png'
 import { useNavigate } from 'react-router-dom';
-import NavBtn from './navBtn';
 
-const LeftHome = () => {
+const LeftHome = (props) => {
 
     const navigate = useNavigate();
 
@@ -27,9 +26,9 @@ const LeftHome = () => {
                 <img className='rounded-full w-[50px] h-[50px]' src={myProfilePic} alt="pp" />
                 <span className=''>{myUserName}</span>
             </div>
-            <NavBtn btnName = "Local Feed" />
-            <NavBtn btnName = "Following" />
-            <NavBtn btnName = "Global Feed" />
+            <div onClick={() => {props.setFeed('following')}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Following</div>
+            <div onClick={() => {props.setFeed('localFeed')}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Local Feed</div>
+            <div onClick={() => {props.setFeed('globalFeed')}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Global Feed</div>
             <div className='grow'></div>
             <button onClick={handleLogout} className=''>Log Out</button>
         </div>
