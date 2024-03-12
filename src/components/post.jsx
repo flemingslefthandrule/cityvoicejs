@@ -11,10 +11,10 @@ const Post = (props) => {
     const body = postData.body;
     const upVotes = postData.upvotes;
     const downVotes = postData.downvotes;
-    const label = postData.label.name;
+    // const label = postData.label.name;
 
     return (
-        <div className="flex flex-col w-full border-black rounded-md overflow-hidden">
+        <div className="flex flex-col w-full border-black border-solid border-2 rounded-md overflow-hidden p-2">
             <div className="h-[56px] w-full flex flex-row p-2 bg-[#61892F]">
                 <img src={profilePic} width={'40px'} height={'40px'} alt="pp" className='rounded-[50%] object-cover' />
                 <p className='flex-1 self-center'>{username}</p>
@@ -26,7 +26,7 @@ const Post = (props) => {
                 <span>{upVotes}</span>
                 <span>{downVotes}</span>
                 <span>NoOfcomments</span>
-                <span>{label}</span>
+                {/* <span>{label}</span> */}
             </div>
         </div>
     )
