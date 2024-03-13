@@ -19,7 +19,7 @@ const MiddleHome = (props) => {
         <div className="p-2 w-[60%] h-[100%] flex flex-col space-y-2 border-x-2 border-x-solid border-x-gray-100">
             <div className="flex">
             <div onClick={() => {setIsPosts(true)}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Posts</div>
-            <div onClick={() => {setIsPosts(false)}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Poles</div>
+            <div onClick={() => {setIsPosts(false)}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Polls</div>
             </div>
             {isCreating ? (
                 <CreatePost setIsCreating={setIsCreating} />

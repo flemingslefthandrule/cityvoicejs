@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 
 const GlobalFeed = (props) => {
 
-    const [isPosts, setIsPosts] = useState(true);
+    const [isPosts, setIsPosts] = useState(true)
 
     useEffect(() => {
-        setIsPosts(props.isPosts);
-    }, [props]);
+        setIsPosts(props.isPosts)
+    }, [props])
 
     return (
         <div>
@@ -22,7 +22,7 @@ const GlobalFeed = (props) => {
                     </>
                     :
                     <>
-                        poles
+                        polls
                         {/* {taggedPosts && taggedPosts.map((eachPost, index) => (
                             <PostPreview key={index} photo={dummyImage} author={eachPost.postid.split('-')[0]} title={eachPost.title} body={eachPost.body} />
                         ))} */}

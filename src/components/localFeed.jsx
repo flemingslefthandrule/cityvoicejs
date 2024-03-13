@@ -22,7 +22,7 @@ const LocalFeed = (props) => {
                     </>
                     :
                     <>
-                        poles
+                        polls
                         {/* {taggedPosts && taggedPosts.map((eachPost, index) => (
                             <PostPreview key={index} photo={dummyImage} author={eachPost.postid.split('-')[0]} title={eachPost.title} body={eachPost.body} />
                         ))} */}
