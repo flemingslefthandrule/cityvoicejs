@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import dummyImage from '../assets/Dummy.png';
 import Post from "../components/post";
-import cat from "../axios"
+import axios from "../axios/axios";
 import PostPreview from "../components/postPreview";
 
 const Profile = () => {
@@ -14,7 +14,6 @@ const Profile = () => {
     const [following, setFollowing] = useState([]);
     const [followers, setFollowers] = useState([]);
     const [posts, setPosts] = useState([]);
-    const apiurl = 'http://127.0.0.1:8000';
     const access = localStorage.getItem("access_token");
     const params = useParams();
     const myUserName = localStorage.getItem("username");
@@ -25,7 +24,7 @@ const Profile = () => {
     const [taggedPosts, setTaggedPosts] = useState([]);
 
     useEffect(() => {
-        cat.get(apiurl + '/user/' + params.username + '/')
+        axios.get('/user/' + params.username + '/')
             .then((resp) => {
                 setUserName(resp.data.username)
                 setIsExpert(resp.data.is_expert);
@@ -41,14 +40,14 @@ const Profile = () => {
             .catch((error) => {
                 console.log(error.message);
             });
-        cat.get(apiurl + '/user/' + params.username + '/posts/')
+        axios.get('/user/' + params.username + '/posts/')
             .then((resp) => {
                 setPosts(resp.data);
             })
             .catch((error) => {
                 console.log(error.message);
             });
-        cat.get(apiurl + '/user/' + params.username + '/tagged/')
+        axios.get('/user/' + params.username + '/tagged/')
             .then((resp) => {
 
                 setTaggedPosts(resp.data);
@@ -70,7 +69,7 @@ const Profile = () => {
     const handleFollow = () => {
 
         if (isFollowing) {
-            cat.post((apiurl + '/user/' + username + '/unfollow'), {
+            axios.post(('/user/' + username + '/unfollow'), {
                 headers: {
                     'X-CSRFToken': csrftoken
                 },
@@ -84,7 +83,7 @@ const Profile = () => {
                 })
         }
         else {
-            cat.post((apiurl + '/user/' + username + '/follow'), {
+            axios.post(('/user/' + username + '/follow'), {
                 headers: {
                     'X-CSRFToken': csrftoken
                 }

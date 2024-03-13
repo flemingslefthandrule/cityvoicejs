@@ -7,11 +7,10 @@ import Profile from './pages/profile'
 
 function App() {
 
-	const apiurl = 'http://localhost:8000';
 	const AuthProtection = ({ children }) => {
 		const refresh = localStorage.getItem('refresh_token');
 		if (refresh) {
-			axios.post(apiurl + '/user/token/verify/', {
+			axios.post('/user/token/verify/', {
 				'token': refresh
 			})
 				.then(function (response) {

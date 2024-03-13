@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import cat from '../axios'
+import axios from '../axios/axios';
 import ListOfUsers from './listOfUsers';
 
 const CreatePost = (props) => {
 
     const [searchName, setSearchName] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const apiurl = 'http://localhost:8000';
     const [labels, setLabels] = useState([])
     const [tag, setTag] = useState("");
     const [formData, setFormData] = useState({
@@ -18,7 +17,7 @@ const CreatePost = (props) => {
     const {title, body, label, tagged} = formData;
 
     useEffect(() => {
-        cat.get(apiurl + '/post/labels/')
+        axios.get('/post/labels/')
             .then((resp) => {
                 setLabels(resp.data);
             })
@@ -33,7 +32,7 @@ const CreatePost = (props) => {
 
     const handleSearch = (e) => {
         if(e.code=='Enter') {
-            cat.get(apiurl+'/user/whois/'+searchName+'/')
+            axios.get('/user/whois/'+searchName+'/')
             .then((resp) => {
                 setSearchResults(resp.data);
             })

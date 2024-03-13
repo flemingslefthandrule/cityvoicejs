@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const Signup = () => {
 
-    const apiurl = 'http://localhost:8000';
 
     const navigate = useNavigate();
     const [refresh, setRefresh] = useState("");

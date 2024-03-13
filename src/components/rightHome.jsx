@@ -1,14 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Dummy from '../assets/Dummy.png'
 import { useState } from 'react'
-import cat from '../axios'
+import axios from '../axios/axios'
 
 const RightHome = () => {
 
     const navigate = useNavigate()
     const [searchName, setSearchName] = useState('')
     const [searchResults, setSearchResults] = useState([])
-    const apiurl = 'http://localhost:8000'
 
     const handleSearchChange = (e) => {
         setSearchName(e.target.value)
@@ -16,7 +15,7 @@ const RightHome = () => {
 
     const handleSearch = (e) => {
         if(e.code=='Enter') {
-            cat.get(apiurl+'/user/whois/'+searchName+'/')
+            axios.get('/user/whois/'+searchName+'/')
             .then((resp) => {
                 setSearchResults(resp.data)
             })

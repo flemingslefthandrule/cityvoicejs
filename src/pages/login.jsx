@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const Login = () => {
 
+    const {setAuth} = useContext(AuthContext)
     const navigate = useNavigate();
-    const apiurl = 'http://localhost:8000';
     const [refresh, setRefresh] = useState("");
     useEffect(() => {
         setRefresh(localStorage.getItem('refresh_token'));
@@ -24,13 +24,14 @@ const Login = () => {
             'username' : userName,
             'password' : password
         }
-        await axios.post(apiurl+'/user/login/', userData)
+        await axios.post('/user/login/', userData)
         .then(function (response) {
             console.log(response);
-            localStorage.clear();
-            localStorage.setItem('access_token', response.data.access);
-            localStorage.setItem('refresh_token', response.data.refresh);
-            localStorage.setItem('username', response.data.username);
+            // localStorage.clear();
+            // localStorage.setItem('access_token', response.data.access);
+            // localStorage.setItem('refresh_token', response.data.refresh);
+            // localStorage.setItem('username', response.data.username);
+
             navigate("/");
         })
         .catch(function (error) {
