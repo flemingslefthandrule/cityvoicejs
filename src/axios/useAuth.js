@@ -6,3 +6,4 @@ const useAuth=()=>{
     useDebugValue(Auth,Auth => Auth.user? "Logged In":"Error in Log In")
     return useContext(useAuth)
 }
+export default useAuth
