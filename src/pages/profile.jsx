@@ -6,6 +6,9 @@ import axios from "../axios/axios";
 import PostPreview from "../components/postPreview";
 import { AuthContext } from "../axios/authProvider";
 import AuthAxios from "../axios/Auth_axios";
+import Cookies from 'js-cookie';
+
+
 
 const Profile = () => {
     const cat = AuthAxios();
