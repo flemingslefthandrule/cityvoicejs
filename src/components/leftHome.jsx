@@ -1,20 +1,22 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Dummy from '../assets/Dummy.png'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../axios/authProvider';
 
 const LeftHome = (props) => {
 
     const navigate = useNavigate();
+    const { auth, setAuth } = useContext(AuthContext);
 
     const [myProfilePic, setMyProfilePic] = useState(Dummy);
-    const myUserName = localStorage.getItem('username');
+    const myUserName = (auth && auth.username) || null;
 
-    if(localStorage.getItem('photo')) {
-        setMyProfilePic(localStorage.getItem('photo'))
-    }
+    // if(localStorage.getItem('photo')) {
+    //     setMyProfilePic(localStorage.getItem('photo'))
+    // }
 
     const handleLogout = ()=> {
-        localStorage.clear();
+        setAuth(null);
         window.location.reload();
     }
 

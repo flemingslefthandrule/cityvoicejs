@@ -5,7 +5,6 @@ import LeftHome from '../components/leftHome';
 
 const Home = () => {
 
-    const myUserName = localStorage.getItem("username");
     const [whichFeed, setFeed] = useState("following");
     
     return (

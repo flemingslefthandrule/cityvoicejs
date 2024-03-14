@@ -1,20 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
+import axios from '../axios/axios';
+import { AuthContext } from '../axios/authProvider';
 
 const Signup = () => {
 
-
+    const { auth, setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [refresh, setRefresh] = useState("");
-
     useEffect(() => {
-        setRefresh(localStorage.getItem('refresh_token'));
-        if(refresh) {
-            navigate('/');
+        if (auth.refreshToken !== null && auth.refreshToken !== undefined) {
+          navigate("/");
         }
-    }, [refresh]);
+    }, [auth]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,11 +30,11 @@ const Signup = () => {
         await axios.post(apiurl+'/user/register/', userData)
         .then(function (response) {
             console.log(response);
-            localStorage.clear();
-            localStorage.setItem('access_token', response.data.access);
-            localStorage.setItem('refresh_token', response.data.refresh);
-            localStorage.setItem('username', response.data.username);
-            navigate("/");
+            setAuth({
+                refreshToken: response.data.refresh,
+                accessToken: response.data.access,
+                username: response.data.username
+            })
         })
         .catch(function (error) {
             console.log(error);

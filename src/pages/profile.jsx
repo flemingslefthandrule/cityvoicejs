@@ -1,11 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import dummyImage from '../assets/Dummy.png';
 import Post from "../components/post";
 import axios from "../axios/axios";
 import PostPreview from "../components/postPreview";
+import { AuthContext } from "../axios/authProvider";
+import AuthAxios from "../axios/Auth_axios";
 
 const Profile = () => {
+    const cat = AuthAxios();
     const csrftoken = window.CSRF_TOKEN;
     const [profilePic, setProfilePic] = useState(dummyImage);
     const [username, setUserName] = useState("");
@@ -14,7 +17,6 @@ const Profile = () => {
     const [following, setFollowing] = useState([]);
     const [followers, setFollowers] = useState([]);
     const [posts, setPosts] = useState([]);
-    const access = localStorage.getItem("access_token");
     const params = useParams();
     const myUserName = localStorage.getItem("username");
     const [isFollowing, setIsFollowing] = useState(false);
@@ -22,6 +24,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const [isPosts, setIsPosts] = useState(true);
     const [taggedPosts, setTaggedPosts] = useState([]);
+    const {auth, setAuth} = useContext(AuthContext);
 
     useEffect(() => {
         axios.get('/user/' + params.username + '/')
@@ -66,14 +69,10 @@ const Profile = () => {
         }
     }, [isFollowing])
 
-    const handleFollow = () => {
+    const handleFollow = async () => {
 
         if (isFollowing) {
-            axios.post(('/user/' + username + '/unfollow'), {
-                headers: {
-                    'X-CSRFToken': csrftoken
-                },
-            })
+            cat.post('/user/' + username + '/unfollow/')
                 .then((resp) => {
                     console.log(resp.data);
                     window.location.reload();
@@ -83,11 +82,7 @@ const Profile = () => {
                 })
         }
         else {
-            axios.post(('/user/' + username + '/follow'), {
-                headers: {
-                    'X-CSRFToken': csrftoken
-                }
-            })
+            cat.post('/user/' + username + '/follow/')
                 .then((resp) => {
                     console.log(resp.data);
                     window.location.reload();
@@ -99,7 +94,7 @@ const Profile = () => {
     }
 
     const handleLogout = () => {
-        localStorage.clear();
+        setAuth(null);
         window.location.reload();
     }
 

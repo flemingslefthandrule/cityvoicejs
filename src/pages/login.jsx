@@ -1,42 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../axios/axios';
+import { AuthContext } from '../axios/authProvider';
 
 
 
 const Login = () => {
 
-    const {setAuth} = useContext(AuthContext)
+    const { auth, setAuth } = useContext(AuthContext)
     const navigate = useNavigate();
-    const [refresh, setRefresh] = useState("");
     useEffect(() => {
-        setRefresh(localStorage.getItem('refresh_token'));
-        if(refresh) {
-            navigate('/');
+        if (auth && auth.refreshToken !== null && auth.refreshToken !== undefined) {
+          navigate("/");
         }
-    }, [refresh]);
+    }, [auth]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userName = e.target[0].value;
         const password = e.target[1].value;
         const userData = {
-            'username' : userName,
-            'password' : password
+            'username': userName,
+            'password': password
         }
         await axios.post('/user/login/', userData)
-        .then(function (response) {
-            console.log(response);
-            // localStorage.clear();
-            // localStorage.setItem('access_token', response.data.access);
-            // localStorage.setItem('refresh_token', response.data.refresh);
-            // localStorage.setItem('username', response.data.username);
-
-            navigate("/");
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                console.log(response);
+                setAuth({
+                    refreshToken: response.data.refresh,
+                    accessToken: response.data.access,
+                    username: response.data.username
+                })
+                console.log(auth);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     return (

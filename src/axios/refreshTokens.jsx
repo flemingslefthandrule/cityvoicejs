@@ -1,8 +1,6 @@
 import axios from "./axios"
 import useAuth from "./useAuth"
 
-//end point =/user/token/refresh/ 
-// response.data.refresh
 
 const RefreshToken = () => {
     const { setAuth } = useAuth()
@@ -11,7 +9,7 @@ const RefreshToken = () => {
             withCredentials: true
         })
         setAuth(previous => {
-            return { ...previous, accessToken: response.data.access }
+            return { ...previous, accessToken: response.data.access, refreshToken : response.data.refresh }
         })
         return response.data.access
     }

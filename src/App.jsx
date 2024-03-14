@@ -2,32 +2,10 @@ import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-route
 import Home from './pages/home'
 import Signup from './pages/signup'
 import Login from './pages/login'
-import axios from 'axios'
 import Profile from './pages/profile'
+import AuthProtection from './authProtection'
 
 function App() {
-
-	const AuthProtection = ({ children }) => {
-		const refresh = localStorage.getItem('refresh_token');
-		if (refresh) {
-			axios.post('/user/token/verify/', {
-				'token': refresh
-			})
-				.then(function (response) {
-					if (response.status != 200) {
-						localStorage.clear;
-						return <Navigate to={"/login"} />
-					}
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
-		}
-		else {
-			return <Navigate to={"/login"} />
-		}
-		return children;
-	}
 
 	return (
 		<BrowserRouter>

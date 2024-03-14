@@ -7,17 +7,17 @@ const AuthAxios = () => {
     const refresh = RefreshToken()
     const { auth } = useAuth()
     useEffect(() => {
-        const RequestIntercept = cat.Interceptors.request.use(
+        const RequestIntercept = cat.interceptors.request.use(
             config => {
-                if (!config.headers["Authorzation"]) {
-                    config.headers["Authorzation"] = `Bearer ${auth.accessToken}`
+                if (!config.headers["Authorization"]) {
+                    config.headers["Authorization"] = `Bearer ${auth.accessToken}`
                 }
                 return config
             }, (Error) => Promise.reject(Error)
         )
 
 
-        const responseIntercept = cat.Interceptors.response.use(
+        const responseIntercept = cat.interceptors.response.use(
             response => response,
             async (Error) => {
                 const PreviousRequest = Error.config
@@ -31,12 +31,11 @@ const AuthAxios = () => {
             }
         )
         return () => {
-            cat.Interceptors.request.eject(RequestIntercept)
-            cat.Interceptors.response.eject(responseIntercept)
+            cat.interceptors.request.eject(RequestIntercept)
+            cat.interceptors.response.eject(responseIntercept)
         }
 
-    }, [ auth,refresh])
+    }, [auth, refresh])
     return cat
-
 }
 export default AuthAxios
