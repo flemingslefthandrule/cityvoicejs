@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Dummy from '../assets/Dummy.png'
+import up from '../assets/up.png'
+import down from '../assets/down.png'
+import comment from '../assets/comment.png'
 
 
 const Post = (props) => {
@@ -30,12 +33,13 @@ const Post = (props) => {
             </div>
             <p className="font-bold text-3xl">{title}</p>
             <p className="text-lg">{body}</p>
-            <div className="flex gap-3">
-                <button onClick={handleUpvote}>^</button>
+            <div className="flex gap-3 items-center">
+                <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleUpvote} src={up} alt="pp" />
                 <span>{upVotes}</span>
-                <button onClick={handleDownvote}>v</button>
+                <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleDownvote} src={down} alt="pp" />
                 <span>{downVotes}</span>
-                <span>NoOfcomments</span>
+                <img className="w-[15px] h-[15px] cursor-pointer" src={comment} alt="pp" />
+                <span>0</span>
                 {label && <span>{label}</span>}
             </div>
         </div>

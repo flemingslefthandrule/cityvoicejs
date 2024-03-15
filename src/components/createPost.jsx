@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from '../axios/axios';
+import axios, { cat } from '../axios/axios';
 import ListOfUsers from './listOfUsers';
 import Option from './option';
 
@@ -100,13 +100,13 @@ const CreatePost = (props) => {
     const handleSubmit = () => {
         formData.options.shift();
         console.log(formData);
-        // cat.post((apiurl+'/post/'),formData)
-        // .then((resp) => {
-        //     console.log(resp);
-        // })
-        // .catch((err) => {
-        //     console.log(err.message);
-        // });
+        cat.post(('/post/'),formData)
+        .then((resp) => {
+            console.log(resp);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
         props.setIsCreating(false);
     }
 

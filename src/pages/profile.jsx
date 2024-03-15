@@ -12,6 +12,7 @@ import LeftHome from "../components/leftHome";
 
 
 const Profile = () => {
+    const {auth, setAuth} = useContext(AuthContext);
     const cat = AuthAxios();
     const csrftoken = window.CSRF_TOKEN;
     const [profilePic, setProfilePic] = useState(dummyImage);
@@ -22,13 +23,12 @@ const Profile = () => {
     const [followers, setFollowers] = useState([]);
     const [posts, setPosts] = useState([]);
     const params = useParams();
-    const myUserName = localStorage.getItem("username");
+    const myUserName = (auth && auth.username) || null;
     const [isFollowing, setIsFollowing] = useState(false);
     const [buttonText, setButtonText] = useState("");
     const navigate = useNavigate();
     const [isPosts, setIsPosts] = useState(true);
     const [taggedPosts, setTaggedPosts] = useState([]);
-    const {auth, setAuth} = useContext(AuthContext);
 
     useEffect(() => {
         axios.get('/user/' + params.username + '/')
@@ -56,7 +56,6 @@ const Profile = () => {
             });
         axios.get('/user/' + params.username + '/tagged/')
             .then((resp) => {
-
                 setTaggedPosts(resp.data);
             })
             .catch((error) => {

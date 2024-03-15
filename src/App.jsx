@@ -4,6 +4,10 @@ import Signup from './pages/signup'
 import Login from './pages/login'
 import Profile from './pages/profile'
 import AuthProtection from './authProtection'
+import Following from './pages/following'
+import GlobalFeed from './pages/globalFeed'
+import LocalFeed from './pages/localFeed'
+import FullPost from './pages/fullPost'
 
 function App() {
 
@@ -14,6 +18,10 @@ function App() {
 				<Route path='signup' element={<Signup />} />
 				<Route path='login' element={<Login />} />
 				<Route path='profile/:username' element={<Profile />} />
+				<Route path='post/:postid' element={<FullPost /> } />
+				<Route path='/following' element={<Following />} />
+				<Route path='/globalFeed' element={<GlobalFeed />} />
+				<Route path='/localFeed' element={<LocalFeed />} />
 			</Routes>
 		</BrowserRouter>
 	)

@@ -27,7 +27,7 @@ const RightHome = () => {
 
     return (
         <div className="w-[20%] h-[100% p-2 items-center">
-            <input className="rounded-[100px] p-2 w-full" type="text" name='search' id='search' placeholder='Search' onChange={handleSearchChange} onKeyDown={handleSearch} />
+            <input className="rounded-[100px] p-2 w-full bg-gray-700" type="text" name='search' id='search' placeholder='Search' onChange={handleSearchChange} onKeyDown={handleSearch} />
             <div className="w-full rounded">
                 {searchResults && searchResults.map((user, index) => (
                     <div key={index} onClick={()=>{navigate("/profile/"+user.name)}} className="flex gap-2 p-2 border-2 border-slate-700 m-2 text-slate-700 hover:bg-slate-700 hover:text-slate-300 cursor-pointer">

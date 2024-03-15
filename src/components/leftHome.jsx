@@ -29,10 +29,10 @@ const LeftHome = (props) => {
                 <img className='rounded-full w-[35px] h-[35px]' src={myProfilePic} alt="pp" />
                 <span className='text-3xl font-bold'>{myUserName}</span>
             </div>
-            <div onClick={() => {props.setFeed('following')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Following</div></>
+            <div onClick={() => {navigate('/following')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Following</div></>
             }
-            <div onClick={() => {props.setFeed('localFeed')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
-            <div onClick={() => {props.setFeed('globalFeed')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Global Feed</div>
+            <div onClick={() => {navigate('/localFeed')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
+            <div onClick={() => {navigate('/globalFeed')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Global Feed</div>
             {!myUserName && <><div onClick={()=>{navigate("/login")}} className='w-full p-2 text-center rounded-md bg-green-600 font-bold hover:bg-green-700 cursor-pointer'>Log In</div></>}
             {myUserName && <><div className='grow'></div>
             <div onClick={handleLogout} className='w-full p-2 text-center rounded-md bg-red-600 font-bold hover:bg-red-700 cursor-pointer'>Log Out</div></>}
