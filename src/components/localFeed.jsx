@@ -1,34 +1,11 @@
 import { useEffect, useState } from "react";
 
 
-const LocalFeed = (props) => {
-
-    const [isPosts, setIsPosts] = useState(true);
-
-    useEffect(() => {
-        setIsPosts(props.isPosts);
-    }, [props]);
+const LocalFeed = () => {
 
     return (
         <div>
             LocalFeed
-            <div className="flex flex-col p-2">
-                {isPosts ?
-                    <>
-                        posts
-                        {/* {posts && posts.map((eachPost, index) => (
-                            <Post key={index} postData={eachPost} username={username} profilePic={profilePic} />
-                        ))} */}
-                    </>
-                    :
-                    <>
-                        polls
-                        {/* {taggedPosts && taggedPosts.map((eachPost, index) => (
-                            <PostPreview key={index} photo={dummyImage} author={eachPost.postid.split('-')[0]} title={eachPost.title} body={eachPost.body} />
-                        ))} */}
-                    </>
-                }
-            </div>
         </div>
     )
 }

@@ -15,6 +15,7 @@ const CreatePost = (props) => {
         tagged: '',
     });
     const {title, body, label, tagged} = formData;
+    const [isPost, setIsPost] = useState(true);
 
     useEffect(() => {
         axios.get('/post/labels/')
@@ -83,9 +84,23 @@ const CreatePost = (props) => {
     const handleCancel = () => {
         props.setIsCreating(false);
     }
+
+    const handlePoll = () => {
+        setIsPost(false);
+    }
+
+    const handlePost = () => {
+        setIsPoat(true);
+    }
     
     return (
         <div className="flex flex-col p-2 space-y-2">
+            <div className='flex'>
+                <div className='text-xl font-bold'>Create Post</div>
+                <div className='grow'></div>
+                {isPost && <button onClick={handlePoll}>Poll</button>}
+                {!isPost && <button onClick={handlePost}>Post</button>}
+            </div>
             <input
                 className="rounded-[100px] p-2"
                 type="text"
@@ -94,14 +109,15 @@ const CreatePost = (props) => {
                 value={title}
                 onChange={handleInputChange}
             />
-            <input
+            {isPost && <input
                 className="rounded-[100px] p-2"
                 type="text"
                 name="body"
                 placeholder="Body"
                 value={body}
                 onChange={handleInputChange}
-            />
+            />}
+            {!isPost && <Option /> }
             <select className="rounded-[100px] p-2" name="Labels" value={label} onChange={handleSelectChange}>
                 <option value="">Select Label</option>
                 {labels.map((option, index) => (
