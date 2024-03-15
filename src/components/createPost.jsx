@@ -14,7 +14,7 @@ const CreatePost = (props) => {
         body: '',
         label: '',
         tagged: '',
-        options: [],
+        options: [''],
     });
     const { title, body, label, tagged } = formData;
     const [isPost, setIsPost] = useState(true);
@@ -48,33 +48,36 @@ const CreatePost = (props) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-    
-        if (name === "title" || name === "body") {
-            // If name is title or body, update directly
+
+        if (name === "title") {
             setFormData({
                 ...formData,
-                [name]: value,
-                options: name === "body" ? undefined : formData.options, // Remove options if body is being updated
+                title: value
+            });
+        } else if (name === "body") {
+            setFormData({
+                ...formData,
+                body: value,
+                options: [] // Clear options if body is being updated
             });
         } else if (name.startsWith("option")) {
-            // If name starts with "option", it's an option field
-            const index = parseInt(name.replace("option", ""), 10);
+            const index = parseInt(name.replace("option", ""), 10) - 1;
             const updatedOptions = [...formData.options];
-            updatedOptions[index - 1] = value;
+            updatedOptions[index] = value;
             setFormData({
                 ...formData,
-                options: updatedOptions,
-                body: '', // Clear body if options are being updated
+                options: updatedOptions
             });
         } else {
-            // For other fields (e.g., label, tagged), update normally
             setFormData({
                 ...formData,
                 [name]: value,
             });
         }
     };
-    
+
+
+
 
     const handleSelectChange = (event) => {
         const { value } = event.target;
@@ -95,6 +98,7 @@ const CreatePost = (props) => {
     }, [searchResults])
 
     const handleSubmit = () => {
+        formData.options.shift();
         console.log(formData);
         // cat.post((apiurl+'/post/'),formData)
         // .then((resp) => {
@@ -122,13 +126,20 @@ const CreatePost = (props) => {
         setNoOfOpts((prev) => prev + 1);
     }
 
-    const renderOpts = () => {
+    const updateOption = (index, value) => {
+        const newOptions = [...formData.options]; // Copy the array
+        newOptions[index] = value; // Update the specific element
+        setFormData({ ...formData, options: newOptions });
+    };
+
+
+    const renderOpts = (updateOption) => {
         const arr = [];
-        for (let i = 0; i < noOfOpts; i++) {
-            arr.push(<Option key={i} index={i + 1} />);
+        for (let i = 0; i < noOfOpts; i++) { // Only iterate up to noOfOpts
+            arr.push(<Option key={i} index={i + 1} updateOption={updateOption} />);
         }
         return arr;
-    }
+    };
 
     return (
         <div className="flex flex-col p-2 space-y-2">
@@ -155,11 +166,10 @@ const CreatePost = (props) => {
                 onChange={handleInputChange}
             />}
             {!isPost &&
-                <div className="flex flex-col">
-                    <h1>Create Options</h1>
-                    <div className='flex flex-col'>
-                        {renderOpts()}
-                    </div>
+                <div className="flex flex-col space-y-2">
+                    <p>Create Options</p>
+                    <div className='flex flex-col space-y-2'>
+                        {renderOpts(updateOption)}                    </div>
                     <button onClick={handlePlus}>+</button>
                 </div>
             }

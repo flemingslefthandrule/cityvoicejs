@@ -19,7 +19,7 @@ const MiddleHome = (props) => {
             {isCreating ? (
                 <CreatePost setIsCreating={setIsCreating} />
             ) : (
-                <input className="rounded-[100px] p-2" onFocus={() => { setIsCreating(true) }} type="text" placeholder="Create a post" />
+                <input className="rounded-[100px] p-2" onFocus={() => { setIsCreating(true) }} type="text" placeholder="Create a post or a poll" />
             )}
             {(feed=="following") && <Following />}
             {(feed=="localFeed") && <LocalFeed />}
