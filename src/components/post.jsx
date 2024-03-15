@@ -25,22 +25,24 @@ const Post = (props) => {
     }
 
     return (
-        <div className="flex flex-col w-full bg-gray-700 rounded-md overflow-hidden p-2 my-2">
-            <div className="h-[56px] w-full flex gap-2 p-2 bg-gray-600">
-                <img src={profilePic} width={'40px'} height={'40px'} alt="pp" className='rounded-[50%] object-cover' />
+        <div className="flex flex-col w-full bg-gray-700 rounded-md overflow-hidden  my-2">
+            <div className="w-full flex gap-2 p-2 bg-gray-600">
+                <img src={profilePic} width={'30px'} height={'30px'} alt="pp" className='rounded-full object-cover' />
                 <p className='flex-1 self-center'>{username}</p>
                 <span className="self-center">{time}</span>
             </div>
-            <p className="font-bold text-3xl">{title}</p>
-            <p className="text-lg">{body}</p>
-            <div className="flex gap-3 items-center">
-                <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleUpvote} src={up} alt="pp" />
-                <span>{upVotes}</span>
-                <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleDownvote} src={down} alt="pp" />
-                <span>{downVotes}</span>
-                <img className="w-[15px] h-[15px] cursor-pointer" src={comment} alt="pp" />
-                <span>0</span>
-                {label && <span>{label}</span>}
+            <div className="p-2 w-full flex gap-2 p-2 bg-gray-700 flex flex-col">
+                <p className="font-bold text-3xl">{title}</p>
+                <p className="text-lg">{body}</p>
+                <div className="flex gap-3 items-center">
+                    <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleUpvote} src={up} alt="pp" />
+                    <span>{upVotes}</span>
+                    <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleDownvote} src={down} alt="pp" />
+                    <span>{downVotes}</span>
+                    <img className="w-[15px] h-[15px] cursor-pointer" src={comment} alt="pp" />
+                    <span>0</span>
+                    {label && <span>{label}</span>}
+                </div>
             </div>
         </div>
     )
