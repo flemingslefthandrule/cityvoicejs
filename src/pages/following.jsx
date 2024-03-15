@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import LeftHome from "../components/leftHome"
 import RightHome from "../components/rightHome"
+import MiddleHome from "../components/middleHome"
 
 
 const Following = () => {

@@ -26,18 +26,18 @@ const LeftHome = () => {
             <p className="font-bold text-4xl my-4">City Voice</p>
             {myUserName &&
                 <div className='flex flex-col space-y-4 w-full'>
-                    <div onClick={() => { navigate('/profile/' + myUserName) }} className="mb-2 items-center justify-center w-full flex gap-3 items-center p-2 bg-gray-700 hover:bg-gray-600 rounded-md cursor-pointer">
+                    <div onClick={() => { navigate('/profile/' + myUserName) }} className="mb-2 items-center justify-center w-full flex gap-3 items-center p-2 bg-gray-700 hover:bg-gray-600 rounded-[100px] cursor-pointer">
                         <img className='rounded-full w-[30px] h-[30px]' src={myProfilePic} alt="pp" />
                         <span className='ml-1 text-2xl font-bold'>{myUserName}</span>
                     </div>
-                    <div onClick={() => { navigate('/following') }} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Following</div>
+                    <div onClick={() => { navigate('/following') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Following</div>
                 </div>
             }
-            <div onClick={() => { navigate('/localFeed') }} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
-            <div onClick={() => { navigate('/globalFeed') }} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Global Feed</div>
-            {!myUserName && <><div onClick={() => { navigate("/login") }} className='w-full p-2 text-center rounded-md bg-green-600 font-bold hover:bg-green-700 cursor-pointer'>Log In</div></>}
+            <div onClick={() => { navigate('/localFeed') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
+            <div onClick={() => { navigate('/globalFeed') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Global Feed</div>
+            {!myUserName && <><div onClick={() => { navigate("/login") }} className='w-full p-2 text-center rounded-[100px] bg-green-600 font-bold hover:bg-green-700 cursor-pointer'>Log In</div></>}
             {myUserName && <><div className='grow'></div>
-            <div onClick={handleLogout} className='w-full p-2 text-center rounded-md bg-red-600 font-bold hover:bg-red-700 cursor-pointer'>Log Out</div></>}
+            <div onClick={handleLogout} className='w-full p-2 text-center rounded-[100px] bg-red-600 font-bold hover:bg-red-700 cursor-pointer'>Log Out</div></>}
         </div>
     )
 }
