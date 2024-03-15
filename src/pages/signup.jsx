@@ -8,7 +8,7 @@ const Signup = () => {
     const { auth, setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
     useEffect(() => {
-        if (auth.refreshToken !== null && auth.refreshToken !== undefined) {
+        if (auth !== null && auth.refreshToken !== null && auth.refreshToken !== undefined) {
           navigate("/");
         }
     }, [auth]);
@@ -27,7 +27,7 @@ const Signup = () => {
             'password' : password
         }
         console.log(userData);
-        await axios.post(apiurl+'/user/register/', userData)
+        await axios.post('/user/register/', userData)
         .then(function (response) {
             console.log(response);
             setAuth({
