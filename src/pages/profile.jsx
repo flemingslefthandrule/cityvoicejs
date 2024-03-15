@@ -97,11 +97,6 @@ const Profile = () => {
         }
     }
 
-    const handleLogout = () => {
-        setAuth(null);
-        window.location.reload();
-    }
-
     const editProfile = () => {
 
     }

@@ -11,7 +11,15 @@ const Post = (props) => {
     const body = postData.body;
     const upVotes = postData.upvotes;
     const downVotes = postData.downvotes;
-    // const label = postData.label.name;
+    const label = postData.label.name;
+
+    const handleUpvote = () => {
+        
+    }
+
+    const handleDownvote = () => {
+        
+    }
 
     return (
         <div className="flex flex-col w-full bg-gray-700 rounded-md overflow-hidden p-2 my-2">
@@ -23,12 +31,12 @@ const Post = (props) => {
             <p className="font-bold text-3xl">{title}</p>
             <p className="text-lg">{body}</p>
             <div className="flex gap-3">
-                <button>^</button>
+                <button onClick={handleUpvote}>^</button>
                 <span>{upVotes}</span>
-                <button>v</button>
+                <button onClick={handleDownvote}>v</button>
                 <span>{downVotes}</span>
                 <span>NoOfcomments</span>
-                {/* <span>{label}</span> */}
+                {label && <span>{label}</span>}
             </div>
         </div>
     )
