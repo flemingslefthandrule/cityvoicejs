@@ -13,7 +13,7 @@ function App() {
 				<Route path='/' element={<AuthProtection><Home /></AuthProtection>} />
 				<Route path='signup' element={<Signup />} />
 				<Route path='login' element={<Login />} />
-				<Route path='profile/:username' element={<AuthProtection> <Profile /> </AuthProtection>} />
+				<Route path='profile/:username' element={<Profile />} />
 			</Routes>
 		</BrowserRouter>
 	)

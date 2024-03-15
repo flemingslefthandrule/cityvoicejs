@@ -3,10 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import dummyImage from '../assets/Dummy.png';
 import Post from "../components/post";
 import axios from "../axios/axios";
-import PostPreview from "../components/postPreview";
 import { AuthContext } from "../axios/authProvider";
 import AuthAxios from "../axios/Auth_axios";
 import Cookies from 'js-cookie';
+import RightHome from "../components/rightHome";
+import LeftHome from "../components/leftHome";
 
 
 
@@ -101,17 +102,23 @@ const Profile = () => {
         window.location.reload();
     }
 
+    const editProfile = () => {
+
+    }
+
     return (
-        <div className="h-[100vh] w-[60vw] bg-[#474B4F] flex flex-col space-y-2 m-auto border-solid border-2 rounded-lg border-[#86C232] overflow-auto">
-            <div className="flex gap-3 border-b-solid border-b-gray-100 border-b-2 p-2">
+        <div className='h-[100vh] w-[100vw] flex'>
+        <LeftHome/>
+        <div className="h-[100vh] w-[60%] flex flex-col space-y-2 overflow-auto">
+        {username && <><div className="flex gap-3 border-b-solid border-b-gray-100 border-b-2 p-2">
                 <img className="rounded-full object-cover h-[100px] w-[100px]" src={profilePic} alt="pp" />
-                <div className="flex flex-col w-[85%]">
-                    <div className="flex justify-between">
-                        <p>{username}</p>
-                        {!(myUserName == username) && <button onClick={handleFollow}>{buttonText}</button>}
-                        {(myUserName == username) && <button onClick={handleLogout}>Log Out</button>}
+                <div className="flex flex-col w-[85%] justify-center">
+                    <div className="flex justify-between items-center justify-center bg-red-300">
+                        <p className="text-3xl text-bold">{username}</p>
+                        {!(myUserName == username || myUserName == null) && <button onClick={handleFollow}>{buttonText}</button>}
+                        {(myUserName == username) && <button onClick={editProfile}>Edit Profile</button>}
                     </div>
-                    {isExpert && <p>{dept}</p>}
+                    {isExpert && <p className="text-gray-400">{dept}</p>}
                     <div className="flex gap-3">
                         <span>Followers {followers.length}</span>
                         <span>Following {following.length}</span>
@@ -132,13 +139,15 @@ const Profile = () => {
                 :
                     <>
                         {taggedPosts && taggedPosts.map((eachPost, index) => (
-                            <PostPreview key={index} photo = {dummyImage} author = {eachPost.postid.split('-')[0]} title = {eachPost.title} body = {eachPost.body} />
-                        ))}
+                            <Post key={index} postData={eachPost} username={username} profilePic={profilePic} />
+                            ))}
                     </>
                 }
-            </div>
+            </div> </> }
         </div>
-    );
+        <RightHome />
+        </div>
+);
 }
 
 export default Profile;

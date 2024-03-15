@@ -14,16 +14,18 @@ const Post = (props) => {
     // const label = postData.label.name;
 
     return (
-        <div className="flex flex-col w-full border-black border-solid border-2 rounded-md overflow-hidden p-2">
-            <div className="h-[56px] w-full flex flex-row p-2 bg-[#61892F]">
+        <div className="flex flex-col w-full bg-gray-700 rounded-md overflow-hidden p-2 my-2">
+            <div className="h-[56px] w-full flex gap-2 p-2 bg-gray-600">
                 <img src={profilePic} width={'40px'} height={'40px'} alt="pp" className='rounded-[50%] object-cover' />
                 <p className='flex-1 self-center'>{username}</p>
-                <span>{time}</span>
+                <span className="self-center">{time}</span>
             </div>
-            <p className="font-bold">{title}</p>
-            <p>{body}</p>
+            <p className="font-bold text-3xl">{title}</p>
+            <p className="text-lg">{body}</p>
             <div className="flex gap-3">
+                <button>^</button>
                 <span>{upVotes}</span>
+                <button>v</button>
                 <span>{downVotes}</span>
                 <span>NoOfcomments</span>
                 {/* <span>{label}</span> */}
