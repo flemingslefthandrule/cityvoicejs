@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from '../axios/axios';
 import ListOfUsers from './listOfUsers';
+import Option from './option';
 
 const CreatePost = (props) => {
 
@@ -13,9 +14,11 @@ const CreatePost = (props) => {
         body: '',
         label: '',
         tagged: '',
+        options: [],
     });
-    const {title, body, label, tagged} = formData;
+    const { title, body, label, tagged } = formData;
     const [isPost, setIsPost] = useState(true);
+    const [noOfOpts, setNoOfOpts] = useState(2);
 
     useEffect(() => {
         axios.get('/post/labels/')
@@ -32,42 +35,64 @@ const CreatePost = (props) => {
     };
 
     const handleSearch = (e) => {
-        if(e.code=='Enter') {
-            axios.get('/user/whois/'+searchName+'/')
-            .then((resp) => {
-                setSearchResults(resp.data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
+        if (e.code == 'Enter') {
+            axios.get('/user/whois/' + searchName + '/')
+                .then((resp) => {
+                    setSearchResults(resp.data);
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                })
         }
     }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+    
+        if (name === "title" || name === "body") {
+            // If name is title or body, update directly
+            setFormData({
+                ...formData,
+                [name]: value,
+                options: name === "body" ? undefined : formData.options, // Remove options if body is being updated
+            });
+        } else if (name.startsWith("option")) {
+            // If name starts with "option", it's an option field
+            const index = parseInt(name.replace("option", ""), 10);
+            const updatedOptions = [...formData.options];
+            updatedOptions[index - 1] = value;
+            setFormData({
+                ...formData,
+                options: updatedOptions,
+                body: '', // Clear body if options are being updated
+            });
+        } else {
+            // For other fields (e.g., label, tagged), update normally
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
     };
     
+
     const handleSelectChange = (event) => {
         const { value } = event.target;
         setFormData({
-          ...formData,
-          label: value,
+            ...formData,
+            label: value,
         });
     };
 
     useEffect(() => {
-        if(searchResults.length==0) {
+        if (searchResults.length == 0) {
             document.getElementById('tagUser').value = tag;
             setFormData({
                 ...formData,
                 tagged: tag,
             });
         }
-    },[searchResults])
+    }, [searchResults])
 
     const handleSubmit = () => {
         console.log(formData);
@@ -90,9 +115,21 @@ const CreatePost = (props) => {
     }
 
     const handlePost = () => {
-        setIsPoat(true);
+        setIsPost(true);
     }
-    
+
+    const handlePlus = () => {
+        setNoOfOpts((prev) => prev + 1);
+    }
+
+    const renderOpts = () => {
+        const arr = [];
+        for (let i = 0; i < noOfOpts; i++) {
+            arr.push(<Option key={i} index={i + 1} />);
+        }
+        return arr;
+    }
+
     return (
         <div className="flex flex-col p-2 space-y-2">
             <div className='flex'>
@@ -117,7 +154,15 @@ const CreatePost = (props) => {
                 value={body}
                 onChange={handleInputChange}
             />}
-            {!isPost && <Option /> }
+            {!isPost &&
+                <div className="flex flex-col">
+                    <h1>Create Options</h1>
+                    <div className='flex flex-col'>
+                        {renderOpts()}
+                    </div>
+                    <button onClick={handlePlus}>+</button>
+                </div>
+            }
             <select className="rounded-[100px] p-2" name="Labels" value={label} onChange={handleSelectChange}>
                 <option value="">Select Label</option>
                 {labels.map((option, index) => (
@@ -127,7 +172,7 @@ const CreatePost = (props) => {
                 ))}
             </select>
             <input className="rounded-[100px] p-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSearch} />
-            {searchResults && <ListOfUsers list={searchResults} setTag={setTag} setSearchResults={setSearchResults}/>}
+            {searchResults && <ListOfUsers list={searchResults} setTag={setTag} setSearchResults={setSearchResults} />}
             <div className='flex'>
                 <button className="rounded-[100px] p-2 grow" onClick={handleCancel}>Cancel</button>
                 <button className="rounded-[100px] p-2 grow" onClick={handleSubmit}>Post</button>
