@@ -24,13 +24,13 @@ const LeftHome = (props) => {
     return (
         <div className="w-[20%] h-[100%] flex flex-col p-2 items-center space-y-2">
             <p className="font-bold text-xl">City Voice</p>
-            <div onClick={()=>{navigate('/profile/'+myUserName)}} className="flex gap-2 items-center p-2 border-gray-100 border-solid rounded-md border-2 cursor-pointer">
+            <div onClick={()=>{navigate('/profile/'+myUserName)}} className="w-full flex gap-6 items-center p-2 bg-gray-700 hover:bg-gray-600 rounded-md cursor-pointer">
                 <img className='rounded-full w-[50px] h-[50px]' src={myProfilePic} alt="pp" />
                 <span className=''>{myUserName}</span>
             </div>
-            <div onClick={() => {props.setFeed('following')}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Following</div>
-            <div onClick={() => {props.setFeed('localFeed')}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Local Feed</div>
-            <div onClick={() => {props.setFeed('globalFeed')}} className='w-full p-2 text-center border-gray-100 border-solid rounded-md border-2 cursor-pointer'>Global Feed</div>
+            <div onClick={() => {props.setFeed('following')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Following</div>
+            <div onClick={() => {props.setFeed('localFeed')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
+            <div onClick={() => {props.setFeed('globalFeed')}} className='w-full p-2 text-center rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer'>Global Feed</div>
             <div className='grow'></div>
             <button onClick={handleLogout} className=''>Log Out</button>
         </div>
