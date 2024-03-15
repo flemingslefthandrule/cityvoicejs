@@ -113,7 +113,7 @@ const Profile = () => {
         {username && <><div className="flex gap-3 border-b-solid border-b-gray-100 border-b-2 p-2">
                 <img className="rounded-full object-cover h-[100px] w-[100px]" src={profilePic} alt="pp" />
                 <div className="flex flex-col w-[85%] justify-center">
-                    <div className="flex justify-between items-center justify-center bg-red-300">
+                    <div className="flex justify-between items-center justify-center">
                         <p className="text-3xl text-bold">{username}</p>
                         {!(myUserName == username || myUserName == null) && <button onClick={handleFollow}>{buttonText}</button>}
                         {(myUserName == username) && <button onClick={editProfile}>Edit Profile</button>}
