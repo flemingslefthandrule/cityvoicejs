@@ -103,7 +103,7 @@ const Profile = () => {
     return (
         <div className='h-[100vh] w-[100vw] flex'>
             <LeftHome />
-            <div className="h-[100vh] w-[60%] p-2 flex flex-col bg-gray-900 overflow-auto rounded-md mt-2">
+            <div className="middle h-[100vh] w-[60%] p-2 flex flex-col bg-gray-900 overflow-auto rounded-3xl">
                 {username &&
                     <>
                         <div className="flex gap-3 rounded-t-md p-2">

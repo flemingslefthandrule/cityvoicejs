@@ -26,11 +26,11 @@ const RightHome = () => {
     }
 
     return (
-        <div className="w-[20%] h-[100% p-2 items-center">
-            <input className="rounded-[100px] p-2 w-full bg-gray-700" type="text" name='search' id='search' placeholder='Search' onChange={handleSearchChange} onKeyDown={handleSearch} />
-            <div className="w-full rounded">
+        <div className="w-[20%] h-[100%] p-2 items-center flex flex-col space-y-2">
+            <input className="rounded-[100px] px-4 py-2 w-full bg-gray-700 focus:outline-none" type="text" name='search' id='search' placeholder='Search' onChange={handleSearchChange} onKeyDown={handleSearch} />
+            <div className="w-full rounded-xl bg-gray-800 flex flex-col justify-center">
                 {searchResults && searchResults.map((user, index) => (
-                    <div key={index} onClick={()=>{navigate("/profile/"+user.name)}} className="flex gap-2 p-2 border-2 border-slate-700 m-2 text-slate-700 hover:bg-slate-700 hover:text-slate-300 cursor-pointer">
+                    <div key={index} onClick={()=>{navigate("/profile/"+user.name)}} className="flex gap-2 p-4 border-b-solid border-b-gray-900 border-b-[2px] cursor-pointer">
                         {user.name ?(
                         <>
                             <img src={user.photo || Dummy} alt="" className="w-[1.5em] rounded-[50%]"/>
@@ -43,7 +43,7 @@ const RightHome = () => {
                         )}
                     </div>
                 ))}
-                {(searchResults.length>0) && <Link>search for posts</Link>}
+                {(searchResults.length>0) && <div className='flex justify-center p-2'><Link >search for posts</Link></div>}
             </div>
         </div>
     )

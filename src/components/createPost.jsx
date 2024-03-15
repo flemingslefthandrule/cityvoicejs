@@ -146,11 +146,11 @@ const CreatePost = (props) => {
             <div className='flex'>
                 <div className='text-xl font-bold'>Create Post</div>
                 <div className='grow'></div>
-                {isPost && <button onClick={handlePoll}>Poll</button>}
-                {!isPost && <button onClick={handlePost}>Post</button>}
+                {isPost && <button className='rounded-[100px] bg-gray-500' onClick={handlePoll}>Poll</button>}
+                {!isPost && <button className='rounded-[100px] bg-gray-500' onClick={handlePost}>Post</button>}
             </div>
             <input
-                className="rounded-[100px] p-2"
+                className="rounded-[100px] px-4 py-2"
                 type="text"
                 name="title"
                 placeholder="Title"
@@ -158,7 +158,7 @@ const CreatePost = (props) => {
                 onChange={handleInputChange}
             />
             {isPost && <input
-                className="rounded-[100px] p-2"
+                className="rounded-[100px] px-4 py-2"
                 type="text"
                 name="body"
                 placeholder="Body"
@@ -169,11 +169,12 @@ const CreatePost = (props) => {
                 <div className="flex flex-col space-y-2">
                     <p>Create Options</p>
                     <div className='flex flex-col space-y-2'>
-                        {renderOpts(updateOption)}                    </div>
-                    <button onClick={handlePlus}>+</button>
+                        {renderOpts(updateOption)}
+                    </div>
+                    <button className='bg-gray-500 rounded-full' onClick={handlePlus}>+</button>
                 </div>
             }
-            <select className="rounded-[100px] p-2" name="Labels" value={label} onChange={handleSelectChange}>
+            <select className="rounded-[100px] px-4 py-2" name="Labels" value={label} onChange={handleSelectChange}>
                 <option value="">Select Label</option>
                 {labels.map((option, index) => (
                     <option key={index} value={index}>
@@ -181,11 +182,11 @@ const CreatePost = (props) => {
                     </option>
                 ))}
             </select>
-            <input className="rounded-[100px] p-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSearch} />
+            <input className="rounded-[100px] px-4 py-2" type="text" name='tagUser' id='tagUser' placeholder='Tag an account' onChange={handleSearchChange} onKeyDown={handleSearch} />
             {searchResults && <ListOfUsers list={searchResults} setTag={setTag} setSearchResults={setSearchResults} />}
-            <div className='flex'>
-                <button className="rounded-[100px] p-2 grow" onClick={handleCancel}>Cancel</button>
-                <button className="rounded-[100px] p-2 grow" onClick={handleSubmit}>Post</button>
+            <div className='flex gap-2'>
+                <button className="rounded-[100px] px-4 py-2 grow bg-gray-500" onClick={handleCancel}>Cancel</button>
+                <button className="rounded-[100px] px-4 py-2 grow bg-gray-500" onClick={handleSubmit}>Post</button>
             </div>
         </div>
     )
