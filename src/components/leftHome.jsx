@@ -33,7 +33,7 @@ const LeftHome = () => {
                     <div onClick={() => { navigate('/following') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Following</div>
                 </div>
             }
-            <div onClick={() => { navigate('/localFeed') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
+            <div onClick={() => { navigate('/') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Local Feed</div>
             <div onClick={() => { navigate('/globalFeed') }} className='w-full p-2 text-center rounded-[100px] bg-gray-700 hover:bg-gray-600 cursor-pointer'>Global Feed</div>
             {!myUserName && <><div onClick={() => { navigate("/login") }} className='w-full p-2 text-center rounded-[100px] bg-green-600 font-bold hover:bg-green-700 cursor-pointer'>Log In</div></>}
             {myUserName && <><div className='grow'></div>

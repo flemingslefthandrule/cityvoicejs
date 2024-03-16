@@ -14,14 +14,13 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Home />} />
 				<Route path='signup' element={<Signup />} />
 				<Route path='login' element={<Login />} />
 				<Route path='profile/:username' element={<Profile />} />
 				<Route path='post/:postid' element={<FullPost /> } />
 				<Route path='/following' element={<Following />} />
 				<Route path='/globalFeed' element={<GlobalFeed />} />
-				<Route path='/localFeed' element={<LocalFeed />} />
+				<Route path='/' element={<LocalFeed />} />
 			</Routes>
 		</BrowserRouter>
 	)
