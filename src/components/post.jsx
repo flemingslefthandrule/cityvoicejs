@@ -23,7 +23,7 @@ const Post = (props) => {
     }
 
     return (
-        <div className="flex flex-col w-full bg-gray-700 rounded-md overflow-hidden my-2">
+        <div className="flex flex-col w-full bg-gray-700 rounded-md overflow-hidden">
             <div className="w-full flex gap-2 p-2 bg-gray-600">
                 <img src={profilePic} width={'30px'} height={'30px'} alt="pp" className='rounded-full object-cover' />
                 <p className='flex-1 self-center'>{username}</p>

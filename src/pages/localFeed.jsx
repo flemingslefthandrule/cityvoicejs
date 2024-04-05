@@ -12,22 +12,26 @@ const LocalFeed = () => {
     const [posts, setPosts] = useState([])
     const [profilePic, setProfilePic] = useState(dummyImage)
 
-    axios.get('/post/localfeed/')
-    .then (( response ) => {
-        setPosts(response.data)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-    
+
+    useEffect(()=>{
+        axios.get('/post/localfeed/')
+        .then((response) => {
+            console.log(response.data)
+            setPosts(response.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    },[])
+
     return (
         <div className='h-[100vh] w-[100vw] flex'>
-            <LeftHome/>
-            <div className="middle h-[100vh] w-[60%] p-2 flex flex-col bg-gray-900 overflow-auto rounded-3xl">
+            <LeftHome />
+            <div className="middle min-h-[100vh] w-[60%] p-2 flex flex-col gap-2 bg-gray-900 overflow-auto scrollbar-hide rounded-3xl">
                 <MiddleHome />
-                <div className="h-[100vh] w-[60%] flex flex-col space-y-2 overflow-auto">
+                <div className="flex flex-col space-y-2 p-2">
                     {posts && posts.map((eachPost, index) => (
-                       <Post key={index} postData={eachPost} username={eachPost.postid.split('-')[0]} profilePic={profilePic} />
+                        <Post key={index} postData={eachPost} username={eachPost.postid.split('-')[0]} profilePic={profilePic} />
                     ))}
                 </div>
             </div>
