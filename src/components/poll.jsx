@@ -4,6 +4,7 @@ import up from "../assets/up.png";
 import down from "../assets/down.png";
 import comment from "../assets/comment.png";
 import { useNavigate } from 'react-router-dom'
+import { formatTimeDifference } from '../commonFunctions'
 
 
 const Poll = (props) => {
@@ -18,7 +19,7 @@ const Poll = (props) => {
     const navigate = useNavigate();
     const profilePic = props.profilePic || Dummy;
     const username = props.username || "Nikhil";
-    const time = postData.created_at;
+    const time = formatTimeDifference(postData.created_at);
     const title = postData.title;
     const options = postData.options;
     const upVotes = postData.upvotes;
