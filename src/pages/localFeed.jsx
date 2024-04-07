@@ -3,14 +3,14 @@ import LeftHome from "../components/leftHome"
 import RightHome from "../components/rightHome"
 import MiddleHome from "../components/middleHome"
 import axios from "../axios/axios"
-import dummyImage from '../assets/Dummy.png'
+import Dummy from '../assets/Dummy.png'
 import Post from "../components/post"
 
 
 const LocalFeed = () => {
 
     const [posts, setPosts] = useState([])
-    const [profilePic, setProfilePic] = useState(dummyImage)
+    const [profilePic, setProfilePic] = useState(Dummy)
 
 
     useEffect(()=>{

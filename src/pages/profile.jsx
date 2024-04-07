@@ -107,10 +107,10 @@ const Profile = () => {
         <>
             <div className='h-[100vh] w-[100vw] flex'>
                 <LeftHome />
-                <div className="middle h-[100vh] w-[60%] p-2 flex flex-col bg-gray-900 overflow-auto scrollbar-hide rounded-3xl">
+                <div className="middle h-[100vh] w-[60%] flex flex-col bg-gray-900 overflow-auto scrollbar-hide rounded-3xl">
                     {username &&
                         <>
-                            <div className="flex gap-3 rounded-t-md p-2">
+                            <div className="flex gap-3 rounded-t-md p-4">
                                 <img className="rounded-full object-cover h-[100px] w-[100px]" src={profilePic} alt="pp" />
                                 <div className="flex flex-col w-[85%] justify-center">
                                     <div className="flex justify-between items-center justify-center">
@@ -125,11 +125,11 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex p-2">
-                                <div onClick={() => { setIsPosts(true) }} className={`w-full p-2 text-center cursor-pointer ${(isPosts) ? 'border-gray-100 border-solid rounded-md border-2' : 'bg-gray-800'}`}>Posts</div>
-                                <div onClick={() => { setIsPosts(false) }} className={`w-full p-2 text-center cursor-pointer ${(isPosts) ? 'bg-gray-800' : 'border-gray-100 border-solid rounded-md border-2'}`}>Tagged Posts</div>
+                            <div className="flex p-4 sticky top-[0px] bg-gray-900">
+                                <div onClick={() => { setIsPosts(true) }} className={`w-full p-2 text-center cursor-pointer ${(isPosts) ? 'border-gray-100 border-solid rounded-md border-2 bg-gray-900' : 'bg-gray-800'}`}>Posts</div>
+                                <div onClick={() => { setIsPosts(false) }} className={`w-full p-2 text-center cursor-pointer ${(isPosts) ? 'bg-gray-800' : 'border-gray-100 border-solid rounded-md border-2 bg-gray-900'}`}>Tagged Posts</div>
                             </div>
-                            <div className="flex flex-col p-2 gap-2">
+                            <div className="flex flex-col p-4 gap-2">
                                 {isPosts ?
                                     <>
                                         {posts && posts.map((eachPost, index) => (

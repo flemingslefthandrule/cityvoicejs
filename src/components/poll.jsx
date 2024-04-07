@@ -1,20 +1,28 @@
-import up from '../assets/up.png'
-import down from '../assets/down.png'
-import comment from '../assets/comment.png'
+import React from 'react';
+import Dummy from "../assets/Dummy.png";
+import up from "../assets/up.png";
+import down from "../assets/down.png";
+import comment from "../assets/comment.png";
 import { useNavigate } from 'react-router-dom'
 
 
-const Post = (props) => {
+const Poll = (props) => {
+
+    const postData = props.postData || {
+        created_at:"5 min ago",
+        title:"Title or question of the poll",
+        options:['option 1', 'option 2', 'option 3'],
+        upvotes:0,
+        downvotes:0
+    };
     const navigate = useNavigate();
-    const postData = props.postData;
-    const profilePic = props.profilePic;
-    const username = props.username;
+    const profilePic = props.profilePic || Dummy;
+    const username = props.username || "Nikhil";
     const time = postData.created_at;
     const title = postData.title;
-    const body = postData.body;
+    const options = postData.options;
     const upVotes = postData.upvotes;
     const downVotes = postData.downvotes;
-    // const label = postData.label.name||null;
 
     const handleUpvote = () => {
         
@@ -32,8 +40,15 @@ const Post = (props) => {
                 <span className="self-center">{time}</span>
             </div>
             <div className="p-2 w-full flex gap-2 p-2 bg-gray-700 flex flex-col">
-                <p className="font-bold text-3xl cursor-pointer" onClick={()=>{navigate("/post/"+postData.postid)}}>{title}</p>
-                <p className="text-lg">{body}</p>
+                <p className="font-bold text-3xl">{title}</p>
+                <div className="flex flex-col">
+                    {options.map((opt, index) => (
+                        <div key={index} className="flex gap-2">
+                            <input type="radio" name={index} />
+                            <span>{opt}</span>
+                        </div>
+                    ))}
+                </div>
                 <div className="flex gap-3 items-center">
                     <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleUpvote} src={up} alt="pp" />
                     <span>{upVotes}</span>
@@ -41,11 +56,10 @@ const Post = (props) => {
                     <span>{downVotes}</span>
                     <img className="w-[15px] h-[15px] cursor-pointer" src={comment} alt="pp" />
                     <span>0</span>
-                    {/* {label && <span>{label}</span>} */}
                 </div>
             </div>
         </div>
     )
 }
 
-export default Post
+export default Poll;
