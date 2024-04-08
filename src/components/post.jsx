@@ -14,8 +14,9 @@ const Post = (props) => {
     const time = formatTimeDifference(postData.created_at);
     const title = postData.title;
     const body = postData.body;
-    const upVotes = postData.upvotes;
-    const downVotes = postData.downvotes;
+    const upVotes = postData.upvotes||0;
+    const downVotes = postData.downvotes||0;
+    const noOfComments = 0;
     // const label = postData.label.name||null;
 
     const handleUpvote = () => {
@@ -42,7 +43,7 @@ const Post = (props) => {
                     <img className="w-[15px] h-[15px] cursor-pointer" onClick={handleDownvote} src={down} alt="pp" />
                     <span>{downVotes}</span>
                     <img className="w-[15px] h-[15px] cursor-pointer" src={comment} alt="pp" />
-                    <span>0</span>
+                    <span>{noOfComments}</span>
                     {/* {label && <span>{label}</span>} */}
                 </div>
             </div>

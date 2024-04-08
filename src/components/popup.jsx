@@ -12,7 +12,7 @@ const Popup = (props) => {
                 <h1>{props.f}</h1>
                 <div className="bg-red-600 rounded-full h-fit w-fit p-2 cursor-pointer" onClick={() => { props.set(false) }}>X</div>
             </div>
-            <div className="w-full rounded-xl bg-gray-800 flex flex-col justify-center">
+            <div className="w-full rounded-xl bg-gray-800 flex flex-col justify-center overflow-auto">
                     {props.list && props.list.map((user, index) => (
                         <div key={index} onClick={() => { navigate("/profile/" + user.username); props.set(false); }} className="flex gap-2 p-4 border-b-solid border-b-gray-900 border-b-[2px] cursor-pointer">
                             {user.username ? (
