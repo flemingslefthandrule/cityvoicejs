@@ -1,6 +1,6 @@
 export function formatTimeDifference(postTime) {
-    const currentTime = new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'});
-    const postDate = new Date(postTime).toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'});
+    const currentTime = new Date();
+    const postDate = new Date(postTime);
     const timeDifference = Math.abs(new Date(currentTime) - new Date(postDate));
     const secondsDifference = Math.floor(timeDifference / 1000);
     const minutesDifference = Math.floor(timeDifference / (1000 * 60));
@@ -15,11 +15,11 @@ export function formatTimeDifference(postTime) {
         return `${hoursDifference} hrs ago`;
     } else if (daysDifference < 7) {
         return `${daysDifference} days ago`;
-    } else if (new Date(postTime).getFullYear() === new Date(currentTime).getFullYear()) {
+    } else if(new Date(postDate).getFullYear() === new Date(currentTime).getFullYear()) {
         const options = { day: 'numeric', month: 'short' };
-        return new Date(postTime).toLocaleDateString('en-US', options);
+        return new Date(postDate).toLocaleDateString('en-IN', options);
     } else {
         const options = { day: 'numeric', month: 'short', year: 'numeric' };
-        return new Date(postTime).toLocaleDateString('en-US', options);
+        return new Date(postDate).toLocaleDateString('en-IN', options);
     }
 }
