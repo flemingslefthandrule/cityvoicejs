@@ -1,12 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../axios/axios';
-import { AuthContext } from '../axios/authProvider';
+import axios from "../../axios/axios";
+import { AuthContext } from '../../axios/authProvider';
 
 const Signup = () => {
 
     const { auth, setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const [username, setUsername] = useState("")
+    const [password,setPassword] = useState("")
+    const [mobile, setMobile] = useState("")
+    const [isexpert, setIsexpert] = useState("")
+
     useEffect(() => {
         if (auth !== null && auth.refreshToken !== null && auth.refreshToken !== undefined) {
             navigate("/");
@@ -55,24 +61,6 @@ const Signup = () => {
                                 required
                             />
                         </div>
-                        {/* <!-- <div className="w-full py-2">
-              <div className="w-[49%] inline-block">
-                <input
-                  className="w-full bg-transparent border border-slate-300 rounded-md placeholder-gray-500 p-4"
-                  type="text"
-                  placeholder="Country"
-                  required
-                />
-              </div>
-              <div className="w-[50%] inline-block">
-                <input
-                  className="w-full bg-transparent border border-slate-300 rounded-md p-4 placeholder-gray-500"
-                  type="text"
-                  placeholder="State"
-                  required
-                />
-              </div>
-            </div> --> */}
                         <div className=" w-full">
                             <input
                                 className="focus:outline outline-white w-full bg-transparent border border-slate-300 rounded-md p-2 placeholder-gray-500"
@@ -81,14 +69,6 @@ const Signup = () => {
                                 required
                                 name="mobileNum"
                             />
-                            {/* <!-- <div className="py-2 w-full">
-                <input
-                  className="w-full bg-transparent border border-slate-300 rounded-md p-4 placeholder-gray-500"
-                  type="email"
-                  placeholder="enter your email"
-                  required
-                />
-              </div> --> */}
                             <div className="py-2 w-full">
                                 <input
                                     className="focus:outline outline-white w-full bg-transparent border border-slate-300 rounded-md p-2 placeholder-gray-500"
