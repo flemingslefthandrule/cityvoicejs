@@ -20,16 +20,11 @@ const Signup = () => {
     }, [auth]);
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const userName = e.target[0].value;
-        const mobileNum = e.target[1].value;
-        const isExpert = e.target[3].value;
-        const password = e.target[2].value;
+    const handleSubmit = async () => {
         const userData = {
-            'username': userName,
-            'phone': mobileNum,
-            'is_expert': isExpert,
+            'username': username,
+            'phone': mobile,
+            'is_expert': isexpert,
             'password': password
         }
         console.log(userData);

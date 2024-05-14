@@ -3,16 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../axios/authProvider";
 import Card from "../../ui/card";
 import Button from "../../ui/button";
+import { Auth,AuthLeft,AuthRight } from "./auth"
 
 const Forgotpassword = () => {
-  const { auth, setAuth } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { auth, setAuth } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   return (
-    <div className="bg-gray-900 w-screen h-screen">
-      <div className="flex justify-center items-center text-slate-100 w-screen h-screen">
-        <Card title="Forgot password" className="bg-gray-800 w-full flex flex-col gap-3">
-          <p>Enter the details of your account</p>
+    <Auth>
+    <AuthLeft className="flex items-center justify-center">
+      Forgot password form
+    </AuthLeft>
+    <AuthRight className="flex items-center justify-center">
+        <Card className="bg-gray-800 w-full flex flex-col gap-3">
+          <p className="text-lg font-bold">Enter the details of your account</p>
           <div className="flex flex-col gap-2">
             <p>Username</p>
             <input type="text" placeholder="username" name="userName" className="w-full rounded-lg bg-gray-700 py-2 px-4 placeholder-gray-500 focus:outline-none focus:ring" />
@@ -26,8 +30,8 @@ const Forgotpassword = () => {
           </div>
           <Button onClick={()=>{navigate("/password-reset")}}>Get reset link</Button>
         </Card>
-      </div>
-    </div>
+      </AuthRight>
+    </Auth>
   );
 };
 
