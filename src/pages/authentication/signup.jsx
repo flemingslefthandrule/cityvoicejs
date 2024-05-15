@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "../../axios/axios";
 import { AuthContext } from '../../axios/authProvider';
+import Card from "../../ui/card"
+import Button from "../../ui/button"
+import { Auth, AuthLeft, AuthRight } from "./auth"
 
 const Signup = () => {
 
@@ -11,7 +14,7 @@ const Signup = () => {
     const [username, setUsername] = useState("")
     const [password,setPassword] = useState("")
     const [mobile, setMobile] = useState("")
-    const [isexpert, setIsexpert] = useState("")
+    const [isexpert, setIsexpert] = useState("false")
 
     useEffect(() => {
         if (auth !== null && auth.refreshToken !== null && auth.refreshToken !== undefined) {
@@ -43,79 +46,31 @@ const Signup = () => {
     }
     return (
         <div className="bg-gray-900 w-screen h-screen">
-            <div className=" flex justify-center text-slate-100 items-center w-screen h-screen">
-                <div className="p-8 w-[450px] max-w-[100vw] rounded border-white shadow-lg bg-[#F9DBBD] bg-opacity-10">
-                    <div className="text-xl py-2 mb-1 font-bold">Lets Get Started</div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="py-2">
-                            <input
-                                className=" focus:outline outline-white w-full bg-transparent border border-slate-300 rounded-md placeholder-gray-500 p-2"
-                                type="text"
-                                name="userName"
-                                placeholder=" enter your username"
-                                required
-                            />
-                        </div>
-                        <div className=" w-full">
-                            <input
-                                className="focus:outline outline-white w-full bg-transparent border border-slate-300 rounded-md p-2 placeholder-gray-500"
-                                type="text"
-                                placeholder="enter your mobile number"
-                                required
-                                name="mobileNum"
-                            />
-                            <div className="py-2 w-full">
-                                <input
-                                    className="focus:outline outline-white w-full bg-transparent border border-slate-300 rounded-md p-2 placeholder-gray-500"
-                                    type="password"
-                                    name="password"
-                                    placeholder="Set password"
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div className="flex py-2">
-                            <input
-                                className="m-2"
-                                type="checkbox"
-                                name="isExpert"
-                                id="isExpert"
-                                required
-                            />
-                            <div className="flex inline-block">
-                                <label className="" htmlFor="isExpert">
-                                    Are you a Government Official ?
-                                </label>
-                            </div>
-                        </div>
-                        <div className="flex flex-nowrap">
-                            <input className="m-2" type="checkbox" required />
-                            <div className="flex flex-wrap">
-                                I agree to the
-                                <a className="text-amber-300 ml-1 " href="#">
-                                    terms and conditions
-                                </a>
-                            </div>
-                        </div>
-                        <div className="py-4 flex justify-center w-full">
-                            <button className=" border border-gray-300 w-[99%] bg-sky-950 text-white border border-grey-300 rounded p-2 hover:bg-cyan-700 hover:border-cyan-700 hover:text-white">
-                                Create account
-                            </button>
-                        </div>
-                    </form>
-                    <span className="ml-2 flex gap-2">
-                        already have an account ?
-                        <Link
-                            className="font-medium text-amber-300 no-underline hover:text-[#535bf2]"
-                            to="/login"
-                        >
-                            Log In
-                        </Link>
-                    </span>
-                </div>
-            </div>
+            <Auth>
+                <AuthLeft className="flex items-center justify-center">
+                    Register your credentials here
+                </AuthLeft>
+                <AuthRight className="flex items-center justify-center">
+                <Card className="bg-gray-800 w-full flex flex-col gap-2">
+                    <p>Username</p>
+                    <input type="text" placeholder="username" value={username} onChange={(event) => setUsername(event.target.value)} className="w-full rounded-lg bg-gray-700 py-2 px-4 placeholder-gray-500 focus:outline-none focus:ring" />
+                    <p>Password</p>
+                    <input type="password" placeholder="password" value={password} onChange={(event) => setPassword(event.target.value)} className="w-full rounded-lg bg-gray-700 py-2 px-4 placeholder-gray-500 focus:outline-none focus:ring" />
+                    <p>Mobile</p>
+                    <input type="text" placeholder="mobile" value={mobile} onChange={(event) => setMobile(event.target.value)} className="w-full rounded-lg bg-gray-700 py-2 px-4 placeholder-gray-500 focus:outline-none focus:ring" />
+                    {/* todo : is expert */}
+                    <Button onClick={handleSubmit} className="mt-2">Sign Up</Button>
+                    <div className="p-2 flex items-center gap-2 text-gray-500">
+                        <div className="h-0 grow border-t-[1px] border-gray-500"></div>
+                        <p>or</p>
+                        <div className="h-0 grow border-t-[1px] border-gray-500"></div>
+                    </div>
+                    <Button variant="secondary" onClick={()=>{navigate("/login")}}>Login</Button>
+                </Card>
+                </AuthRight>
+            </Auth>
         </div>
-    );
-};
+    )
+}
 
-export default Signup;
+export default Signup

@@ -19,7 +19,7 @@ export const AuthRight = ({ children,className, ...props }) => {
 
 export const Auth = ({children}) => {
   return (
-    <div className="bg-gray-900 w-screen min-h-screen flex flex-wrap">
+    <div className="bg-gray-900 w-screen min-h-screen flex flex-col sm:flex-row">
       {children}
     </div>
   )

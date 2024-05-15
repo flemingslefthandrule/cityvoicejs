@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios/axios";
 import { AuthContext } from "../../axios/authProvider";
-import Card from "../../ui/card";
-import Button from "../../ui/button";
+import Card from "../../ui/card"
+import Button from "../../ui/button"
 import { Auth, AuthLeft, AuthRight } from "./auth"
 
 const Login = () => {
